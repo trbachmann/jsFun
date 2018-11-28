@@ -186,7 +186,8 @@ const context = {
     return result;
 
     // Annotation: 
-    // When obj.method() is invoked the value of 'this' is bound
+    // 'this' references obj becuase of rule #2: when executing 
+    // a function as a method on an object, 'this' refers to that object
   },
 
   exerciseI() {  

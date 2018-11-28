@@ -38,15 +38,13 @@ const scope = {
     return result;
 
     // Annotation:
-    // First we declare the global variables called 'personA', 'personB', 'person C'
+    // Within the global scope on line 3 we declare three variables: personA, personB, personC,
+    // and then we declare the function changePerson. changePerson is invoked on line 28 so we
+    // begin executing changePerson. 
+    // On line 8 we check to see if currently personA equals a string of Paul, which evaluates to true.
+    // So we enter that if block and reassign the variable person to a string of CardiB. However
+    //
   },
-
-
-
-
-
-
-
 
   exerciseB() {
     let number = 30;
