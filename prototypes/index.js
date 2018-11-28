@@ -23,11 +23,19 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter((kitten) => {
+      return kitten.color === 'orange';
+    })
+      .map((orangekitten) => {
+        return orangekitten.name;
+      });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we are given an array and want an array back that only inclues
+    // the names from elements that match a condition, we will first use the filter
+    // method to return an array that. On each iteration
+    // FINISH ANNOTATION!!!!!!!!!
   },
 
   sortByAge() {
@@ -122,11 +130,23 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map((module) => {
+      let studentsPerInstructor = module.students / module.instructors;
+      return { mod: module.mod, studentsPerInstructor: studentsPerInstructor };
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we are given an array and want an array back of the same length
+    // we will use the 'map' method since it will return an array of the same
+    // length. On each iteration of map, we will create a variable 
+    // 'studentsPerInstructor' and assign it to the value of the current 
+    // element's students value divided by the current element's instructors 
+    // value. We will also return an object literal that has a mod key with value 
+    // of the current element's mod value and a studentsPerInstructor key with
+    // a value of the variable studentsPerInstructor. When iteration is complete
+    // it will return an array of the same length as the original with the
+    // modified elements.
   }
 };
 
