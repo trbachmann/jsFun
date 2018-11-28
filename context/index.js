@@ -16,11 +16,13 @@ const context = {
 
 
     // What is the value of `this` when we call ship.fly()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // 'this' references the global window object. The const variable 
+    // fly is an ES6 arrow function and the value of 'this' is set when
+    // the fuction is created, which then points to the global window object.
   },
 
   exerciseB() {
@@ -30,11 +32,14 @@ const context = {
     }
     
     // What is the value of `this` when we call fn()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // 'this' will reference the global window object because fn() is written
+    // as an ES5 function, which sets the value of 'this' when invoked. In
+    // this case when we call fn() it is not called as a method on a
+    // particiular object, therefore 'this' refers to the global object.
   },
 
   exerciseC() {
@@ -49,11 +54,14 @@ const context = {
     el.addEventListener('click', car.getInfo);
 
     // What is the value of `this` when a user clicks on our element and car.getInfo() is triggered?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'el';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // 'this' will reference the const variable el, which is the value of the
+    // element selected from the DOM. getInfo() is an ES5 function which means
+    // 'this' is set when it is invoked, so in this case it is invoked when
+    // a user clicks on our element and that binds it to that element.
   },
 
   exerciseD() {
@@ -70,11 +78,15 @@ const context = {
 
 
     // What is the value of `this` when we call dog.getBreed()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // 'this' will reference the global window object. When dog.getBreed()
+    // is executed, innerFuntion() is invoked which is an ES5 function and
+    // therefore sets the value of 'this' upon execution, not creation
+    // and since innerFunction() is not executed as a method of the dog
+    // object 'this' references the global window object. 
   },
 
   exerciseE() {
@@ -86,11 +98,15 @@ const context = {
 
 
     // What is the value of `this` when we call fn()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // 'this' references the global window object. fn() is writen as an ES6
+    // function, which sets the value of 'this' upon creation. fn() is not executed as a method on
+    // an object and is not invoked in function code with the keyword new, therefore the default
+    // 'this' refers to the global window object.
+
   },
 
   exerciseF() {
@@ -109,11 +125,13 @@ const context = {
     const storm = new Hero('Ororo', 'weather control', true);
 
     // What is the value of `this` when we call storm.identifyHero()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'instance of Hero';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // 'this' references the newly created object instance becuase of
+    // rule #3, which says when using the new operator 'this' refers to the
+    // newly created object
   },
 
   exerciseG() {
@@ -137,11 +155,13 @@ const context = {
 
 
     // What is the value of `this` when we call monopoly.restart()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // 'this' references the global window object. When restart() is invoked as a method of 
+    // monopoly, setTimeout() is imediately invoked. Since 'this' is set in ES5 when the function
+    // is invoked, 'this' refers to the global object in the setTimeout function
   },
 
   exerciseH() {
@@ -157,11 +177,11 @@ const context = {
     obj.method();
 
     // What is the value of `this` when we call obj.arrowFunction()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'obj';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // When obj.method() is invoked the value of 'this' is bound
   },
 
   exerciseI() {  
@@ -180,7 +200,7 @@ const context = {
     }, poets);
 
     // What is the value of `this` that gets returned on each iteration of poets.map()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'poets';
     return result;
 
     // Annotation: 

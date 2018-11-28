@@ -29,12 +29,24 @@ const scope = {
 
     // Log D: personC
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Ben'}, 
+      {'B': 'CardiB'}, 
+      {'C': 'CardiB'}, 
+      {'D': 'Paul'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare the global variables called 'personA', 'personB', 'person C'
   },
+
+
+
+
+
+
+
 
   exerciseB() {
     let number = 30;
@@ -63,11 +75,16 @@ const scope = {
 
     // Log D: number
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 75}, 
+      {'B': 64}, 
+      {'C': 64}, 
+      {'D': 30}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // 
   },
 
   exerciseC() {
@@ -101,7 +118,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare a global variable 'greeting' during execution it is assigned to a string of 'Yo'.
   },
 
   exerciseD() {
