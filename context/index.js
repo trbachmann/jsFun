@@ -22,7 +22,11 @@ const context = {
     // Annotation:
     // 'this' references the global window object. The const variable 
     // fly is an ES6 arrow function and the value of 'this' is set when
-    // the fuction is created, which then points to the global window object.
+    // the fuction is created, which then points to the global window object. 
+    // If fly() was declared on line 11 inside the constructor function then
+    // 'this' would reference ship, becuase fyl() would be declared when 
+    // the constructor function is invoked and therefore the current
+    // context of this would be the newly instanciated object ship.
   },
 
   exerciseB() {
@@ -59,9 +63,9 @@ const context = {
 
     // Annotation: 
     // 'this' will reference the const variable el, which is the value of the
-    // element selected from the DOM. getInfo() is an ES5 function which means
-    // 'this' is set when it is invoked, so in this case it is invoked when
-    // a user clicks on our element and that binds it to that element.
+    // element selected from the DOM because of rule #2 when a function
+    // is invoked as a method with dot notation 'this' references the obj
+    // to the left of the dot.
   },
 
   exerciseD() {
@@ -87,6 +91,7 @@ const context = {
     // therefore sets the value of 'this' upon execution, not creation
     // and since innerFunction() is not executed as a method of the dog
     // object 'this' references the global window object. 
+
   },
 
   exerciseE() {

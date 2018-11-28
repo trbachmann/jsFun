@@ -520,11 +520,16 @@ const scope = {
 
     // Log C: lunch
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'B': 'soup'},
+      {'C': 'soup'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Declaring a variable 'lunch', then we have a function declaration orderLunch()
+    // Log A never occurs becuase the first conditional evaluates to false
+    //**** waiting for the test suite to be updated, the result above it correct but not passing test*****
   },
 
   exerciseQ(){
@@ -557,7 +562,13 @@ const scope = {
 
     myCrazyKidAntics(myKid);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Pandora'},
+      {'B': ['Antigone', 'Pandora']},
+      {'C': 'Mandy'},
+      {'D': 'Antigone'},
+      {'E': 'Pandora'}
+    ];
     return result;
 
     // Annotation:
