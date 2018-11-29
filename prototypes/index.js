@@ -41,11 +41,13 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((a, b) => {
+      return b.age - a.age;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // INISH ANNOTATION!!!!!!!!! Write your annotation here as a comment
   },
 
   growUp() {
@@ -62,7 +64,10 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((kitten) => {
+      kitten.age += 2;
+      return kitten;
+    });
     return result;
   }
 };
@@ -94,11 +99,23 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((accu, currentClub) => {
+      currentClub.members.forEach((member) => {
+        if (!accu[member]) {
+          accu[member] = [currentClub.club];
+        } else {
+          accu[member].push(currentClub.club);
+        }
+      });
+      return accu;
+    }, {});
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
+    // FINISH ANNOTATION!!!!!
+    // Going to use reduce becuase it is the only prototype method
+    // that can return an object
   }
 };
 
@@ -177,7 +194,9 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map((cake) => {
+      return {flavor: cake.cakeFlavor, inStock: cake.inStock};
+    });
     return result;
 
     // Annotation:
@@ -205,22 +224,35 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter((cake) => {
+      return cake.inStock > 0;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we want to return an array of cakes that that meet a specific 
+    // condition of being inStock we will use the filter method. In each iteration the callback function of 
+    // the filter method returns true if the condition of the current cake's inStock  value is greater
+    // than 0 is met. At completion of iteration the filter method returns an array that includes
+    // only the cakes whose value of inStock was greater than 0. If none of the cakes had a value greater
+    // than zero, filter would return an empty array. 
   },
   
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((sum, cake) => {
+      sum += cake.inStock;
+      return sum;
+    }, 0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we want to return a single value from the array cakes, we use the
+    // reduce method. On each iteration of reduce, we add the current cake's 
+    // inStock value to our sum accumulater. The sum accumulater is return at the 
+    // completion of the reduce execution.
   },
 
   allToppings() {
@@ -228,11 +260,28 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((toppingsArr, cake) => {
+      cake.toppings.forEach((topping) => {
+        if (toppingsArr.indexOf(topping) === -1) {
+          toppingsArr.push(topping);
+        }
+      });
+      return toppingsArr;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we need to return array that does not have to be the exact same size as the
+    // original array, we' will use the reduce method. In each iteration,
+    // we are invoking a forEach method on the current cake's toppings array. For each topping, we 
+    // are checking if our accumulater, toppingsArr, includes that topping. We are doing this
+    // by invoking the indexOf method on our accumulater, toppingsArr within the conditional.
+    // If the current topping is not in toppingsArr, it will result in -1. We will then enter the 
+    // if block statement and we use the push method to add the topping in the current context to
+    // the end of the toppingsArr. If the current topping is alreadyin the toppingsArr, we will not
+    // enter the if block statement and the foreach will simply continue iterating. At the end of
+    // execution of reduce, toppingsArr is returned. 
+
   },
 
   groceryList() {
@@ -246,12 +295,26 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((groceryObj, cake) => {
+      cake.toppings.forEach((topping) => {
+        if(!groceryObj[topping]) {
+          groceryObj[topping] = 0;
+        }
+        groceryObj[topping]++;
+      });
+      return groceryObj;
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
-  }
+    // Because we want to return an object, we'll use the reduce method since
+    // it is the only one that can return an object. We invoke reduce on the cakes array. In each iteration,
+    // we use the forEach method to iterate over each topping in the toppings array of the current cake.
+    // If the current topping is not a key in groceryObj, then we set that topping as a key
+    // of groceryObj with an intial value of 0. Once the topping is set as a key:value pair
+    // we step outside of the if block and increment the value of the current topping. 
+    // If the topping is already a key in groceryObj, we increment its value. At the end of execution
+    // of reduce, groceryObj is returned.
 };
 
 

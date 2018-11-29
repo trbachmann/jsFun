@@ -150,6 +150,7 @@ const context = {
       }
 
       restart() {
+        // this -> monoply
         setTimeout(function() {
           console.log(`Restarting ${this.title}...`);
         }, 1000);
