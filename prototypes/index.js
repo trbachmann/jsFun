@@ -32,10 +32,16 @@ const kittyPrompts = {
     return result;
 
     // Annotation:
-    // Because we are given an array and want an array back that only inclues
-    // the names from elements that match a condition, we will first use the filter
-    // method to return an array that. On each iteration
-    // FINISH ANNOTATION!!!!!!!!!
+    // Because we we want to return an array that only inclues the names from
+    // elements that match a condition, we will first use the filter method.
+    // On each iteration its callback function will return true is the condition
+    // is met that the current kitten's color is 'orange'. Upon completion of the 
+    // iteration the filter method returns an array, which only includes kittens
+    // whose color value equals 'orange'. We then chain the map method because we want 
+    // to return a modified array of the same length from the filter method's return.
+    // On each iteration the map method returns a modified version of the current element
+    // which is only the value of the name property of each kitten object. Upon completetion
+    // of the iteration, map method returns an array of just the kitten names. 
   },
 
   sortByAge() {
@@ -47,7 +53,13 @@ const kittyPrompts = {
     return result;
 
     // Annotation:
-    // INISH ANNOTATION!!!!!!!!! Write your annotation here as a comment
+    // Becuase we want to sort the array by age we use the sort method to 
+    // put the elements in that order. The parameters for our callback function are a and b. 
+    // 'a' represents the first element in the array you are comparing and 'b' is the next element 
+    // in the array you are comparing. The sort method will iterate through the entire array 
+    // until all the elements are ordered largest to smallest because we have the return statement set 
+    // as b.age - a.age. If we wanted in reverse order, we could rewrite as a.age - b.age, which would sort
+    // the array from smallest to largest. 
   },
 
   growUp() {
@@ -69,21 +81,24 @@ const kittyPrompts = {
       return kitten;
     });
     return result;
+    
+    // Annotation:
+    // Because we want an array of all the kitties, we use the map method to 
+    // return a modified array of the same length. On iteration we increment each
+    // kitten's age value by two and reassign their age age property to the new value.
+    // Afterwards we return each modified kitten object. Upon completion of the iteration
+    // map returns a modified array of all the kitties.
   }
 };
 
 
 
 
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
 
 
 
@@ -112,26 +127,26 @@ const clubPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
-    // FINISH ANNOTATION!!!!!
-    // Going to use reduce becuase it is the only prototype method
-    // that can return an object
+    // Because we want to return an object, we will use reduce since it is the
+    // only prototype method that can return an object. On each iteration of
+    // reduce, we will invoke a forEach method on the members array of the current 
+    // club element. On each iteration, if our accumulator (initially an empty object) 
+    // does not have a key matching the current member, we step into the if block statement
+    // and add a property ('member') to our accumulator and assign it to an array
+    // with the currentClub's club property value at index 0. If our accumulator 
+    // already has a key matching the current member, we step into the else block 
+    // and push the currentClub's clbu property value into our accumulator's 
+    // member (at this current context) array. Upon completetion of the reduce
+    // iteration we return our accumulator object.
   }
 };
 
 
-
-
-
-
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-
-
-
 
 
 
@@ -200,7 +215,14 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return a modified array of the same length
+    // as the original array, we will use the map method. In each 
+    // iteration the callback fuction of map will return a modified
+    // element, which is an object with a key of 'flavor' whose value
+    // is the current cake's cakeFlavor value and another key of 'inStock'
+    // whose value is the current cake's inStock value. Upon completetion
+    // of the iteration the map method returns an array of the modified
+    // elements.
   },
 
   onlyInStock() {
@@ -315,6 +337,7 @@ const cakePrompts = {
     // we step outside of the if block and increment the value of the current topping. 
     // If the topping is already a key in groceryObj, we increment its value. At the end of execution
     // of reduce, groceryObj is returned.
+  }
 };
 
 

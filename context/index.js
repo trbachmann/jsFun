@@ -187,8 +187,17 @@ const context = {
     return result;
 
     // Annotation: 
-    // 'this' references obj becuase of rule #2: when executing 
-    // a function as a method on an object, 'this' refers to that object
+    // 'this' references obj. On line 183 method() is invoked as a
+    // method of obj, in the current context 'this' references obj 
+    // and we move up to line 176. In the functional scope we 
+    // reassign this.arrowFunction (which was previously a property 
+    // with a value of null), to an ES6 arrow function. When this 
+    // reassignment happens 'this' loses its binding to obj becuase
+    // the value of 'this' is determined upon creation, not invokation.
+    // Therefore the value of 'this' for that ES6 arrow function is the
+    // global window object so when we call obj.arrowFunction(), 'this'
+    // references the global window object.
+
   },
 
   exerciseI() {  
@@ -211,9 +220,10 @@ const context = {
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment. Annotation should include explanation regarding the second argument of `poets` that is being passed
+    // 'this' references poets becuase the method map() is invoked on the poets 
+    // object and when executing a functon as a method of an object, the 
+    // value of 'this' refers to that object.
   },
-
   exerciseJ() {
     const el = $('#btn');
     el.on('click', function() {
