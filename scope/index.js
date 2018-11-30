@@ -149,7 +149,7 @@ const scope = {
 
     // Annotation:
     // On line 116 in the global scope we declare a variable 'greeting' and then we declare 
-    // the function greeting Function which is invoked on line 138. Upon invocation we move to
+    // the function greetingFunction which is invoked on line 138. Upon invocation we move to
     // line 119 and begin execution. In the local scope we declare a variable 'greeting' and 
     // assign it a value of 'Yo'. We then check if 'greeting' is equal to 'Yo' and this evaluates
     // to true in the current local context so we enter the if block. In the block we declare a 
@@ -192,11 +192,34 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'hi'},
+      {'B': 'welcome'},
+      {'C': 'welcome'},
+      {'D': 'howdy'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 169 in the global scope we declare a variable 'greeting' and
+    // then declare the function greetingGenerator, which is invoked on line 
+    // 186. Upon invocation we move to line 172 and begin execution. In the local
+    // scope we declare a variable 'greeting' and assign it a value 'hi' and we
+    // declare the function newGreeting, which is invoked later on line 186. We then 
+    // move to the if conditional and check if 'greeting' equals 'hi', which it 
+    // does in the local scope so we move into the if block. Within the block
+    // we declare a block-scoped variable 'greeting' with a value of 'hello'
+    // and becuase it is block-scope it will not leak out. The block 
+    // execution is complete so we step out and log greeting which in the local
+    // scope equals 'hi'. We move to line 186 and invoke newGreeting, then move
+    // up to line 181 and begin execution. We want to reassign 'greeting', but
+    // do not have a declared variabe in the local scope so we move up the scope
+    // chain to the greetingGenerator scope and find a declared variable 'greeting'
+    // and reassign its value to 'welcome'. We then log greeting, which equals
+    // 'welcome'. Execution of this block is complete so we step out and pop
+    // newGreeting off the callStack and then log greeting, which in the 
+    // current local scope is 'welcome'. The execution for greetingGenerator 
+    // is complete and then we log greeting, which in the global scope equals 'howdy' 
   },
 
   exerciseE() {
@@ -224,11 +247,34 @@ const scope = {
 
     // Log D: name
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'C': 'Brittany'},
+      {'A': 'Nathaniel'},
+      {'B': 'Nathaniel'},
+      {'D': 'Brittany'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 226 in the global scope we declare a variable 'name' and declare
+    // the function sayName, which is invoked on line 246. The variable 'name'
+    // is assigned to a value 'Brittany'. We then log name, which equals
+    // 'Brittany. Upon invokation of sayName on line 
+    // 246 we move to line 229 and begin execution. In the local scope we
+    // declare a varible name and assign its value 'Pam'. Then we move to the
+    // conditional and evaluate if 'name' equals 'Pam', which it does in the 
+    // current local context so we enter the if block. In the block we reassign
+    // a variable 'name', which we find declared in the local scope, to a value
+    // 'Nathaniel'. We move to the next conditional and evaluate if the length
+    // of 'name' is greater than 0, which the length of 'Nathanial' is so we 
+    // step into the if block. There we assign a block-scoped variable 'name'
+    // to a value of 'Brittany'. This ends execution and since the variable we
+    // just declared is blockscoped, it won't "leak out". We then log 'name',
+    // which equals 'Nathaniel' in the local scope and then execution of the block
+    // is complete so we step out and log 'name' on line 241, which equals
+    // 'Nathaniel' in the local scope. Execution of sayName is complete and is
+    // popped off the callStack. Then we log 'name' in the global scope, which
+    // equals 'Brittany'.
   },
 
   exerciseF() {
@@ -259,11 +305,35 @@ const scope = {
 
     // Log E: dog
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Spot'},
+      {'B': 'Spot'},
+      {'C': 'Biscuit'},
+      {'D': 'Biscuit'},
+      {'E': 'Biscuit'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 281 in the global scope we assign a variable 'dog' and then
+    // declare the function petDog, which is invoked on line 304. We assign 'dog'
+    // to the value 'Spot' and then invoke petDog on line 304 and begin
+    // execution. In the local scope of petDog we declare the function rollOver
+    // and then begin execution on line 284 where we log 'dog'. There is not a 
+    // declared variable 'dog' in the local scope so we go up the scope chain to
+    // the global scope where there is a declared 'dog' variable so we log its 
+    // value of 'Spot'. Then we move to the if block and check if 'dog' equals
+    // 'Spot', which in the global scope it does so it evaluates to true and 
+    // we step into the block. In the block we declare a blockscoped variable
+    // 'dog' with a value 'Fluffy' and complete execution of the if block. We 
+    // move to line 299 and invoke rollOver, which moves us to begin execution
+    // on line 291 and we log 'dog'. So we move up the scope chain and in the 
+    // global scope it equals 'Spot'. Then we reassign 'dog', again moving up 
+    // the chain to the global scope, to a value of 'Biscuit'. We then log
+    // 'dog', which is 'Biscuit'. Execution of rollOver is complete, it is
+    // popped off the callStack and then we log 'dog' as the last line of the
+    // petDog execution, which equals 'Biscuit'. Exeuction of petDog is complete
+    // we move to line 306 in the global scope and log 'dog', which equals 'Biscuit'
   },
 
   exerciseG() {
@@ -289,11 +359,34 @@ const scope = {
 
     // Log D: fruit
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'reference error'},
+      {'B': 'mango'},
+      {'C': 'mango'},
+      {'D': 'apple'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 340 in global scope we declare a variable 'fruit' and declare
+    // a function eatFruit. Variable fuit is then assigned to 'apple' and
+    // function eatFruit is invoked on line 358, so we begin execution and
+    // move to line 344 and check if fruit is not equal to 'kiwi'. There is 
+    // not a declared variable fruit in the local scope so we move up the scope
+    // chain and in global scope the declare variable fruit equals 'apple', 
+    // which is not equal to 'kiwi' so the conditional evaluates to true. We 
+    // move into the if block and declare a variable 'fruit with the keyword 
+    // var and assign it a value of 'mango'. We then move to the if statement
+    // and evaluate if there is a fruit variable, which is true so we move into
+    // that if block. We logA which returns a reference error becuase 
+    // we declared a variable 'fruit' with the keyword const and if a variable is 
+    // declared with let or const it cannot be accessed before it is declared (temporal deadzone)/
+    // Execution of the block is complete so we move out 
+    // to line 352 and logB fruit, which equals 'mango' in the local scope. Execution
+    // of that block is complete to we step out to line 355 and logC fruit, which equals
+    // 'mango' becuase the variable 'fruit' we declared in the if block was declared with a 
+    // keyword var which is not block scope and "leaks out". Execution of eatFruit
+    // is complete and we move into the global scope and logD fuit, which equals 'apple'
   },
 
   exerciseH() {
@@ -329,11 +422,35 @@ const scope = {
 
     fn1();
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 4},
+      {'D': 9},
+      {'E': 10},
+      {'B': 9},
+      {'C': 4}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 393 in global scope we declare three variables, 'num' 'fn1' 'fn2'.
+    // Then we assign 'num' to a value of 6, 'fn1' to a value of a function 
+    // expression, and 'fn2' to a function expression. On 423vwe invoke the fn1
+    // function. We begin execution of fn1 on line 396, where we declare a varible 
+    // in the local scope, 'num' assigned a value of 4. We logA 'num' in
+    // the current local scope which equals 4. Then we move to the if conditional
+    // and 'num' less than 5 evaluates to true, since num is 4. We move into the block
+    // and declare a block-scoped variable num and assign it a value of 9. Then we invoke 
+    // the fn2 function and pass through an argument of num, which equals 9. We begin
+    // execution in the fn2 local scope and logD 'num' which is 9. Then we reassign 
+    // num, which moves up the scope chain to the local context of fn1, to a value of 
+    // num + 1, which is 10. We logE which is 10. Execution of fn2 is complete, it is
+    // popped of the callStack and we continue on line 405. We declare a block scoped
+    // variable newNum and assign is a value of num, which is 9 within this block. We
+    // then logB num, which equals 9. We're step out of the if block to line 410 and 
+    // reassign newNum to a value of num. There isn't a declared variable newNum in the 
+    // local scope so we move up the chain and declare newNum in the global scope, it is
+    // assigned a value of 4 since num in the local scope is 4. We logE num which is 4.
+    // Exuction is complete. 
   },
 
   exerciseI() {
@@ -360,11 +477,20 @@ const scope = {
     eatSnack();
     // Log E: hunger
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 75},
+      {'B': 0},
+      {'C': 75},
+      {'D': 80},
+      {'A': 55},
+      {'B': 0},
+      {'C': 55},
+      {'E': 55}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // 
   },
 
   exerciseJ() {
@@ -401,11 +527,44 @@ const scope = {
     // Log E: sandwich
     // Log F: amandaBynes
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'ketchup sandwich'},
+      {'D': 'gouda'},
+      {'B': undefined},
+      {'C': 'not a mediocre sandwich'},
+      {'E': 'not a mediocre sandwich'},
+      {'F': 'National Treasure'}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Starting from line 497 in global scope we declare a variable 'sandwich',
+    // then addChipotle, and addCheese. We then assign 'sandwich' to a string
+    // of 'ketchup sandwich' and LogA 'sandwich' which equals 'ketchup sandwich'.
+    // We then assign addChipotle to a function expression and do the same for addCheese
+    // then we look for a variable cheeseTopping, which has not been declared
+    // so it is declared in the global scope and assigned a value 'kraft'. Then 
+    // addCheese function is invoked. Begiing execution of addCheese we declare
+    // a variable cheeseTopping in the local scope and a variable ShesTheManReference.
+    // Then we assign cheeseTopping the value of 'gouda' and then LogD cheeseTopping
+    // which equals 'gouda' in the local scope. Next we invokce the shesTheManRefernce
+    // and begin executution. We look for a declared variable amandaBynes, but do
+    // not have one declared in local scope so we move up the scope chain util we 
+    // reach the global scope without finding it. Therefore we declare a global variable
+    // amandaBynes and assign is a value of 'National Treasure'. Execution of
+    // shesTheManRefernce is complete, its popped off the callStack. addCheese execution
+    // is also complete. We then invoke addChipotle function and begin execution on line 501
+    // We declare a variable toppings. Then we logB toppings, but since we have not
+    // assigned a value to toppings, it logs undefined. Then we assign a value of 
+    // 'chipotle sauce' to toppings. We move to the if conditionals and check if 
+    // toppings is equal to 'chipotle sauce', which is does so we step into the block
+    // and look for a variable sandwich, but there is not one declare in the block or 
+    // local scope so we move up the scope chain to the global scope and find a 
+    // declared variable sandwich, which we reassign to a value of 'not a mediocre sandwich'
+    // We complete the if block and move to line 509 where we logC sandwich, which equals
+    // 'not a mediocre sandwich'. Execution of addChipolte is complete. Then we logE
+    // sandwich which equals 'not a mediocre sandwich' and logF amandaBynes which equals 'National Treasure'
+
   },
 
   exerciseK() {
@@ -422,11 +581,20 @@ const scope = {
 
     // Log B: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 7},
+      {'B': 7}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 571 in global scope we declare a varible num and assign
+    // it a value of 10. Then we invoke the function foo and enter execution
+    // we check if num is greater than 5, and look up the scope chain to fund
+    // num which is greater than 5 so we move into the if block. Then we reassign
+    // num in the global scope to a value of 7. We complete the if block and then
+    // logA num, which equals 7. Execution of foo is complete and it is popped
+    // off the callStack. Then we logB num, which equals 7.
   },
 
   exerciseL() {
@@ -454,11 +622,27 @@ const scope = {
 
     // Log C: grade
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 95},
+      {'B': 90},
+      {'C': 90}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 601 in global scope we declare a variable grade, and 
+    // assign it a value of 100. Then we invoke losePoints function on line 621
+    // and begin execution. Then we look for a variable grade, there is not one
+    // in the local sope so we move up the scope chain to the global scope and 
+    // then reassign the declared variable grade to a value of 90. Then we invoke
+    // the function addPoints. On line 607 we declare a block-scoped variable
+    // grade and assign it a value of 95. We then check if grade equals 95, 
+    // which in the local scope it does so we enter the if block and then declare
+    // a block scoped variable grade and assign it to 97. The block execution is complete
+    // so we step out and on line 613 we logA grade, which equals 95 in the local scope.
+    // Execution of addPoints is complete so it is popped off the callStack and we move to
+    // line 618 where we logB, which equals 90 in the local scope. Execution of 
+    // locePoints is complete and we step out to line 623 where we logC which equals 90.
   },
 
   exerciseM() {
@@ -467,24 +651,33 @@ const scope = {
     function first() {
       // Log A: num
       num = 6;
-      // Log B: num
+      // Log B: num 
     }
 
     function second() {
-      // Log C: num
+      // Log C: num 
       let num = 7;
     }
 
     first();
     second();
 
-    // Log D: num
+    // Log D: num 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 5},
+      {'B': 6},
+      {'C': 'reference error'},
+      {'D': 5}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // ON line 649 in global scope we delcare a variable num and assign
+    // it to a value of 5. Then we invoke the 'first' function and enter execution
+    // We logA num, and move up the scope chain to the global scope to find the declared
+    // variable num, which equals 5.
+    // FINISH ANNOTATION !!!!!!!!!!!
   },
 
   exerciseN() {

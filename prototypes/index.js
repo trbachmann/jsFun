@@ -367,11 +367,16 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter((classroom) => {
+      return classroom.program === 'FE';
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return an array that includes only the front-end
+    // classrooms, we will use the filter method. On each iteration of filter
+    // we will return the current classroom only if it's program property
+    // equals 'FE'.
   },
 
   totalCapacities() {
@@ -382,21 +387,52 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((capacityObj, classroom) => {
+      if (!capacityObj['feCapacity']) {
+        capacityObj['feCapacity'] = 0;
+      } else if (!capacityObj['beCapacity']) {
+        capacityObj['beCapacity'] = 0;
+      }
+      
+      if (classroom.program === 'FE') {
+        capacityObj['feCapacity'] += classroom.capacity;
+      } else {
+        capacityObj['beCapacity'] += classroom.capacity;
+      }
+
+      return capacityObj;
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Because we want to return an object, we will use reduce. On each
+    // iteration of reduce we'll check if our accumulator does not have a 
+    // property of 'feCapacity'. If it does not we set 'feCapacity' as a
+    // property with a value of 0. We also do the same to check for a 
+    // property of 'beCapacity'. We do this within block statements so
+    // that on subsequent iteraction of reduce, we don't reassign the 
+    // value of our accumulators property to 0. Also on each iteration
+    // we check if the current classroom's program property equals 'FE'
+    // and if it does we increase the value of our accumulator's 'feCapacity'
+    // property by the current classrooms's capacity value. Otherwise, we 
+    // know the current classroom is a 'BE' and so we increase the value
+    // of our accumulator's 'beCapacity property by the current 
+    // classrooms's capacity value. Upon completion of the iteration we 
+    // return our accumulator.
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a, b) => {
+      return a.capacity - b.capacity;
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return an array that is sorted by capacity we will
+    // use the sort method. On each iteration sort will compare the value of 
+    // capacity property to sort the classrooms in order from smallest to largest
   }
 };
 
@@ -422,11 +458,18 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+
+    const result = breweries.reduce((sum, brewery) => {
+      return sum += brewery.beers.length;
+    }, 0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return a single number we will use the
+    // reduce method. Our accumulator will start out with a value of
+    // 0 and on each iteration we get the value of the current brewery's
+    // beers array length and add that to our accumulator, sum. Upon
+    // completion of iteration we'll return the sum of all the beers.
   },
 
   getBreweryBeerCount() {
@@ -438,11 +481,17 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.map(brewery => {
+      return { name: brewery.name, beerCount: brewery.beers.length};
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want an array of the same length as our original, we 
+    // use the map method. On each iteration of map we're going to return
+    // an object with a name property whose value equals the current brewery's
+    // name value, and a beerCount property whose value equals the current
+    // brewery's beers array length
   },
 
   findHighestAbvBeer() {
@@ -450,11 +499,27 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+
+    const result = breweries.reduce((beersArr, brewery) => {
+      beersArr = beersArr.concat(brewery.beers);
+      return beersArr;
+    }, []).sort((a, b) => {
+      return b.abv - a.abv;
+    });
+    return result.shift();
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We want to return a beer which has the highest abv. First we want
+    // to get an array of all the beers from all of the breweries so we 
+    // use the reduce method. On each iteration of reduce we assign our
+    // accumulator beersArr to the value of beersArr concatenated, using
+    // the concat method, with the current brewery's beers array. At 
+    // completion of iteration reduce returns an array of all of the breweries
+    // beers which we then want to sort. So we use the sort method and for
+    // each iteration we compare the current beer's abv value and sort them
+    // in order from largest to smallest. Upon complete of iteration the beer
+    // with the highest abv is at the 0 index of our array so we can then use
+    // the shift method to return that beer at index 0.
   }
 };
 
@@ -498,11 +563,30 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // map over instructors array 
+    // find the matching cohort for our current instructor
+    // grab the studentCount value from the matching cohort
+    // return an object with the instructor name and studentCount value
+    const result = instructors.map((instructor) => {
+      let matchingCohort = cohorts.find((cohort) => {
+        return cohort.module === instructor.module;
+      });
+
+      return { name: instructor.name, studentCount: matchingCohort.studentCount};
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return an array that is the same size as the
+    // instructors array, we will use the map method and call it on that array.
+    // We also need to iterate through the cohorts array to find the specific
+    // cohort matching the instructor's cohort, so we use the find method.
+    // On each iteration of map, we invoke the find method on the cohorts
+    // array to find the cohort whose module equals the current instructors cohort 
+    // and assign it to a variable 'matchingCohort'. Then we return an object
+    // that has the property name with a value of the current instructors name
+    // and a property studentCount with a value of the matchingCohorts studentCount
+    // property value.
   },
 
   studentsPerInstructor() {
@@ -512,11 +596,37 @@ const turingPrompts = {
     // cohort1804: 10.5
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // we have an array and we want an object, so we'll reach for reduce
+    // we are going to iterate over cohorts, becuase it is the same length
+    // as the properties in the object we want to return
+    // both datasets have module in common
+    // on each iteration of reduce over the cohorts array we want to
+    // assign a new property to our accumulator obj, that is cohort combined
+    // with the current cohort's cohort property value 
+    // then we want to assign the value of that to be calculation of studentCount
+    // divided by how many teachers teach that module has
+
+    const result = cohorts.reduce((obj, currCohort) => {
+      let teachersForCurrMod = instructors.filter((instructor) => {
+        return instructor.module === currCohort.module;
+      }).length;
+      obj[`cohort${currCohort.cohort}`] = currCohort.studentCount / teachersForCurrMod;
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Becuase we want to return an object, we will use the reduce method. We will iterate
+    // over the cohorts array becuase it has the same length as the properties in the object
+    // we want to return. On each iteration of reduce, we are going to calculate the teachers
+    // for that current mod that matches the current cohort we are at in the reduce iteration.
+    // We will use filter becuase we can filter the instructors array to return an array of 
+    // only instructors whose module matches the current cohorts modules and then get the 
+    // length value of that array so we know how many instructors teach that module.
+    // After that we want to add a property to our accumulator obj. The key for it will be
+    // a template literal with 'cohort' and then value of the current cohort's cohort value.
+    // The value for the property is the result of calculating the current cohort's student count
+    // divided by the value of the variable teachersForCurrMod. Then we return our accumulator.
   },
 
   modulesPerTeacher() {
@@ -529,7 +639,27 @@ const turingPrompts = {
     //   Pam: [2, 4]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // we're given 2 arrays and we want an object, so we want to use reduce
+    // Since the key of each property is the instructor name, it makes the most
+    // sense to iterate over the instructors array.
+    // both data sets have module in common
+    // On iteration we want to get the value of the current instructor's name
+    // property and set that value to a key in our accumulator, obj.
+    // then we need a forEach to check each subject in the teaches array and 
+    // compare it to the each of the cohorts cohort.curriculum array to see if 
+    // they match
+
+    const result = instructors.reduce((obj, instructor) => {
+      obj[instructor.name] = [];
+      instructor.teaches.forEach(subject => {
+        cohorts.forEach(cohort => {
+          if (cohort.curriculum.includes(subject) && !obj[instructor.name].includes(cohort.module)) {
+            obj[instructor.name].push(cohort.module);
+          }
+        });
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -546,7 +676,18 @@ const turingPrompts = {
     //   recursion: [ 'Pam', 'Leta' ]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // we have two arrays and we need an object so we are going to use reduce
+    const result = cohorts.reduce((obj, cohort) => {
+      cohort.curriculum.forEach(subject => {
+        obj[subject] = [];
+        instructors.forEach((instructor) => {
+          if (instructor.teaches.includes(subject)) {
+            obj[subject].push(instructor.name);
+          }
+        });
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -581,7 +722,24 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // we are given an object and an array
+    // we need an array
+    // we will use Object.keys which gives us 
+    // an array of just the keys from the object you pass in so that
+    // we can then use reduce on.
+
+    const result = Object.keys(bosses).reduce((arr, boss) => {
+      let name = bosses[boss].name;
+      let loyaltyCount = sidekicks.filter(sidekick => {
+        return sidekick.boss === name;
+      }).reduce((sum, sidekick) => {
+        return sum += sidekick.loyaltyToBoss;
+      }, 0);
+
+      arr.push({ bossName: name, sidekickLoyalty: loyaltyCount });
+      return arr;
+
+    }, []);
     return result;
 
     // Annotation:

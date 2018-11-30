@@ -191,12 +191,9 @@ const context = {
     // method of obj, in the current context 'this' references obj 
     // and we move up to line 176. In the functional scope we 
     // reassign this.arrowFunction (which was previously a property 
-    // with a value of null), to an ES6 arrow function. When this 
-    // reassignment happens 'this' loses its binding to obj becuase
-    // the value of 'this' is determined upon creation, not invokation.
-    // Therefore the value of 'this' for that ES6 arrow function is the
-    // global window object so when we call obj.arrowFunction(), 'this'
-    // references the global window object.
+    // with a value of null), to an ES6 arrow function. Since the 
+    // value of 'this' is determined when an ES6 arrow function 
+    // is created, 'this' refers to obj
 
   },
 
